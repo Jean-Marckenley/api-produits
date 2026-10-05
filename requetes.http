@@ -1,0 +1,111 @@
+### Créer un produit
+POST http://localhost:3000/api/produits
+Content-Type: application/json
+
+{
+  "nom": "Ecran",
+  "prix": 399.99,
+  "stock": 10,
+  "categorie": "Informatique"
+}
+
+### Vérifier la liste
+GET http://localhost:3000/api/produits
+
+### Tester des données invalides
+POST http://localhost:3000/api/produits
+Content-Type: application/json
+
+{
+  "prix": -10,
+  "stock": 2.5,
+  "categorie": "Informatique"
+}
+### Modifier le produit 4
+PUT http://localhost:3000/api/produits/4
+Content-Type: application/json
+
+{
+  "nom": "Ecran",
+  "prix": 349.99,
+  "stock": 8,
+  "categorie": "Informatique"
+}
+### Supprimer le produit de test Ecran
+DELETE http://localhost:3000/api/produits/4
+
+### Modifier le produit 1
+PUT http://localhost:3000/api/produits/1
+Content-Type: application/json
+
+{
+  "nom": "Laptop",
+  "prix": 1200,
+  "stock": 6,
+  "categorie": "Informatique"
+}
+### Vérifier la santé de PostgreSQL
+GET http://localhost:3000/api/health
+
+### Produit existant — attendu 200
+GET http://localhost:3000/api/produits/1
+
+### Produit introuvable — attendu 404
+GET http://localhost:3000/api/produits/999
+
+### Identifiant invalide — attendu 400
+GET http://localhost:3000/api/produits/abc
+
+### Création sans nom — attendu 400
+POST http://localhost:3000/api/produits
+Content-Type: application/json
+
+{
+  "prix": 25,
+  "stock": 10,
+  "categorie": "Accessoires"
+}
+
+### Création avec prix négatif — attendu 400
+POST http://localhost:3000/api/produits
+Content-Type: application/json
+
+{
+  "nom": "Test",
+  "prix": -10,
+  "stock": 10,
+  "categorie": "Accessoires"
+}
+
+### Création avec stock décimal — attendu 400
+POST http://localhost:3000/api/produits
+Content-Type: application/json
+
+{
+  "nom": "Test",
+  "prix": 25,
+  "stock": 2.5,
+  "categorie": "Accessoires"
+}
+
+### Modification d’un produit inexistant — attendu 404
+PUT http://localhost:3000/api/produits/999
+Content-Type: application/json
+
+{
+  "nom": "Test",
+  "prix": 25,
+  "stock": 10,
+  "categorie": "Accessoires"
+}
+
+### Modification avec données invalides — attendu 400
+PUT http://localhost:3000/api/produits/1
+Content-Type: application/json
+
+{
+  "nom": "",
+  "prix": -10,
+  "stock": 2.5,
+  "categorie": ""
+}
