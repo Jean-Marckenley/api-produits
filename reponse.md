@@ -55,3 +55,17 @@ L’API continue de récupérer les produits dans PostgreSQL.
 Elle renvoie X-Cache: bypass pour indiquer que le cache n’est pas utilisé.
 On vérifie la connexion à Redis et on gère ses erreurs pour éviter de bloquer l’API.
 Quand Redis redevient disponible, l’API peut utiliser le cache à nouveau.
+
+ Bonus E2 — API dans Docker
+
+ Pourquoi utiliser db au lieu de localhost ?
+Dans le conteneur API, localhost désigne le conteneur API lui-même.
+On utilise db pour joindre le conteneur PostgreSQL.
+
+ Pourquoi utiliser une construction en plusieurs étapes ?
+La première étape compile TypeScript en JavaScript.
+L’image finale contient le JavaScript compilé et les dépendances nécessaires pour lancer l’API.
+
+ Pourquoi mettre .env dans .dockerignore ?
+Cela évite de copier les mots de passe et la configuration locale dans l’image Docker.
+

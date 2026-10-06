@@ -96,3 +96,33 @@ docker compose down
 
 Les données PostgreSQL restent dans le volume pgdata.
 L’option -v supprime ce volume et ses données.
+
+## Bonus E2 — Lancer toute l’application dans Docker
+
+Le fichier Dockerbonus compile TypeScript et construit l’image de l’API.
+
+Avant le lancement, créer un fichier .env à partir de .env.example et renseigner les valeurs.
+
+Pour construire et démarrer les quatre services :
+
+```bash
+docker compose up -d --build
+```
+
+Pour vérifier leur état :
+
+```bash
+docker compose ps
+```
+
+Adresses :
+- Produits : http://localhost:3000/api/produits
+- Santé de l’API : http://localhost:3000/api/health
+- Adminer : http://localhost:8081
+
+Pour arrêter les services :
+
+```bash
+docker compose down
+```
+
